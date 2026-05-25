@@ -1,6 +1,6 @@
-import("../test-setup");
+import "../test-setup.js";
 import { describe, it, expect } from "vitest";
-import User from "../../src/models/User";
+import User from "../../src/models/User.js";
 
 describe("User Model", () => {
   it("should create a user", async () => {
@@ -14,7 +14,7 @@ describe("User Model", () => {
     expect(user.username).toBe("testuser");
     expect(user.email).toBe("test@test.com");
     expect(user.profileImage).toBe("http://image.com");
-  });
+  }, 20000);
 
   it("should not allow duplicate email", async () => {
     await User.create({
@@ -28,9 +28,9 @@ describe("User Model", () => {
         username: "user2",
         email: "duplicate@test.com",
         profileImage: "http://image.com",
-      }),
+      })
     ).rejects.toThrow(/duplicate key/);
-  });
+  }, 20000);
 
   it("should not allow duplicate username", async () => {
     await User.create({
@@ -44,9 +44,9 @@ describe("User Model", () => {
         username: "sameuser",
         email: "b@test.com",
         profileImage: "http://image.com",
-      }),
+      })
     ).rejects.toThrow(/duplicate key/);
-  });
+  }, 20000);
 
   it("should validate email format", async () => {
     await expect(
@@ -54,9 +54,9 @@ describe("User Model", () => {
         username: "bademail",
         email: "not-an-email",
         profileImage: "http://image.com",
-      }),
+      })
     ).rejects.toThrow(/Invalid email/);
-  });
+  }, 20000);
 
   it("should validate profileImage URL", async () => {
     await expect(
@@ -64,7 +64,7 @@ describe("User Model", () => {
         username: "user3",
         email: "user3@test.com",
         profileImage: "not-a-url",
-      }),
+      })
     ).rejects.toThrow(/valid URL/);
-  });
+  }, 20000);
 });

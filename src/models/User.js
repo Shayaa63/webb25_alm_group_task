@@ -6,12 +6,10 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
       trim: true,
-      unique: true,
     },
     email: {
       type: String,
       required: true,
-      unique: true,
       lowercase: true,
       trim: true,
       match: [/.+@.+\..+/, "Invalid email"],
@@ -22,7 +20,11 @@ const userSchema = new mongoose.Schema(
       match: [/^https?:\/\/.+/, "Please use a valid URL"],
     },
   },
-  { timestamps: true },
+  { timestamps: true }
 );
+
+// Create unique indexes explicitly
+userSchema.index({ email: 1 }, { unique: true });
+userSchema.index({ username: 1 }, { unique: true });
 
 module.exports = mongoose.model("User", userSchema);
