@@ -3,6 +3,7 @@ import mongoose from mongoose;
 import { beforeAll, afterAll, afterEach } from vitest;
 
 let mongoServer;
+process.env.JWT_SECRET = "testsecret123";
 
 beforeAll(async () => {
   mongoServer = await MongoMemoryServer.create();
