@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const { beforeAll, afterAll, afterEach } = require("vitest");
 
 let mongoServer;
+process.env.JWT_SECRET = "testsecret123";
 
 beforeAll(async () => {
   mongoServer = await MongoMemoryServer.create();
