@@ -40,7 +40,4 @@ const accommodationSchema = new mongoose.Schema({
 
 });
 
-module.exports = mongoose.model(
-  "Accommodation",
-  accommodationSchema
-);
+module.exports = mongoose.models.Accommodation || mongoose.model("Accommodation", accommodationSchema);
