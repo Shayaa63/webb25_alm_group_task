@@ -3,7 +3,9 @@ import { describe, it, expect } from "vitest";
 import User from "../../src/models/User.js";
 
 describe("User Model", () => {
+
   it("should create a user", async () => {
+
     const user = await User.create({
       username: "testuser",
       email: "test@test.com",
